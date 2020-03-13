@@ -1,0 +1,639 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_test" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="730,1280" sap2010:WorkflowViewState.IdRef="_test_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="_test" sap:VirtualizedContainerService.HintSize="710,1220" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="ModValue" />
+      <Variable x:TypeArguments="x:Int32" Default="7" Name="Input" />
+      <Variable x:TypeArguments="x:String" Name="Letter" />
+      <Variable x:TypeArguments="x:Int32" Name="Quotient" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <DoWhile DisplayName="Do while" sap:VirtualizedContainerService.HintSize="668,1128" sap2010:WorkflowViewState.IdRef="DoWhile_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <DoWhile.Condition>[Quotient &gt; 26]</DoWhile.Condition>
+      <Sequence sap:VirtualizedContainerService.HintSize="622,966" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap:VirtualizedContainerService.HintSize="580,60" sap2010:WorkflowViewState.IdRef="Assign_28">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[ModValue]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">[Input Mod 26]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="580,60" sap2010:WorkflowViewState.IdRef="Assign_90">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[Quotient]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">[cint(Math.Truncate(Input / 26))]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <If Condition="[Input = 26]" sap:VirtualizedContainerService.HintSize="580,674" sap2010:WorkflowViewState.IdRef="If_7">
+          <If.Then>
+            <WriteLine DisplayName="Write line" sap:VirtualizedContainerService.HintSize="231,61" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="Z" />
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="If Input is not 26" sap:VirtualizedContainerService.HintSize="304,526" sap2010:WorkflowViewState.IdRef="Sequence_8">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[ModValue = 0]" sap:VirtualizedContainerService.HintSize="262,51" sap2010:WorkflowViewState.IdRef="If_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="264,486" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_87">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[Quotient]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[cint(Math.Truncate(Input / 26))]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_88">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[Input]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[Quotient - 1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_89">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[ModValue]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[Input Mod 26]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <WriteLine DisplayName="Write line" sap:VirtualizedContainerService.HintSize="242,62" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="Z" />
+                  </Sequence>
+                </If.Then>
+              </If>
+              <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[ModValue]" sap:VirtualizedContainerService.HintSize="262,51" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign x:Key="1" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">A</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="2" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">B</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="3" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">C</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="4" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">D</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="5" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">E</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="6" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">F</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="7" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">G</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="8" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">H</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="9" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">I</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="10" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">J</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="11" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">K</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="12" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">L</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="13" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">M</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="14" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_15">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">N</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="15" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_16">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">O</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="16" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_17">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">P</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="17" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_18">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">Q</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="18" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_19">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">R</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="19" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_20">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">S</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="20" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_21">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">T</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="21" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_22">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">U</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="22" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_23">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">V</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="23" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_24">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">W</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="24" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_25">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">X</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="25" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_26">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">Y</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="0" sap:VirtualizedContainerService.HintSize="242,60" sap2010:WorkflowViewState.IdRef="Assign_85">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">Z</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Switch>
+              <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_29">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[Quotient]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[cint(Math.Truncate(Input / 26))]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <WriteLine DisplayName="Write line" sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[Letter]" />
+              <If Condition="[Quotient = 0]" sap:VirtualizedContainerService.HintSize="1033,1269" sap2010:WorkflowViewState.IdRef="If_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="888,1121" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[Quotient &gt; 26]" sap:VirtualizedContainerService.HintSize="846,1029" sap2010:WorkflowViewState.IdRef="If_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_30">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[Input]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[Quotient]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="539,881" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[Quotient]" sap:VirtualizedContainerService.HintSize="497,688" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign x:Key="1" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_58">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">A</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="2" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_59">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">B</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="3" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_60">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">C</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="4" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_61">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">D</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="5" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_62">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">E</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="6" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_63">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">F</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="7" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_64">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">G</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="8" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_65">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">H</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="9" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_66">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">I</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="10" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_67">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">J</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="11" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_68">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">K</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="12" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_69">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">L</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="13" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_70">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">M</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="14" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_71">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">N</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="15" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_72">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">O</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="16" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_73">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">P</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="17" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_74">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">Q</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="18" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_75">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">R</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="19" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_76">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">S</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="20" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_77">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">T</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="21" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_78">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">U</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="22" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_79">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">V</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="23" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_80">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">W</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="24" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_81">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">X</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="25" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_82">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">Y</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign x:Key="0" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_83">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[Letter]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">Z</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch>
+                          <WriteLine DisplayName="Write line" sap:VirtualizedContainerService.HintSize="497,61" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[&quot;Letter2 : &quot; + Letter]" />
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+    </DoWhile>
+  </Sequence>
+</Activity>

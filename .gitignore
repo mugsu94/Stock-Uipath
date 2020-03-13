@@ -1,0 +1,7 @@
+
+.local/AllDependencies.json
+.local/EpkDemo.nuget.props
+.local/nuget.cache
+.local/nuget.cache.backup
+.local/PackageCache.json
+.local/ProjectSettings.json

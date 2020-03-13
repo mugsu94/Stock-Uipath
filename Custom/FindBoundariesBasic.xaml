@@ -1,0 +1,397 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="FindBoundariesBasic"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_WB" Type="InArgument(ui:WorkbookApplication)" />
+    <x:Property Name="out_LowerRightCell" Type="OutArgument(x:String)" />
+    <x:Property Name="out_UpperLeftCell" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>FindBoundariesBasic_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Core.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="FindBoundariesBasic" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Cursor" />
+      <Variable x:TypeArguments="x:Boolean" Name="HasContent" />
+      <Variable x:TypeArguments="x:String" Name="RightmostColumn" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="CellContent" />
+      <Variable x:TypeArguments="x:String" Name="CellContentString" />
+      <Variable x:TypeArguments="x:Int32" Name="LastRowIndex" />
+    </Sequence.Variables>
+    <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Finds top left, top right, bottom left, bottom right boundary of table" />
+    <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Cleaned data only!" />
+    <ui:ExcelApplicationScope Password="{x:Null}" WorkbookPath="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" ExistingWorkbook="[in_WB]" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Assign DisplayName="Cursor" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Cursor]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">A1</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Has Content" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[HasContent]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+              </Assign.Value>
+            </Assign>
+            <While DisplayName="Loop: Find right boundary" sap2010:WorkflowViewState.IdRef="While_1" Condition="[HasContent]">
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <ui:ExcelReadCell Cell="[Cursor]" DisplayName="Read Cell" sap2010:WorkflowViewState.IdRef="ExcelReadCell_1" SheetName="[in_WB.GetSheets(0)]">
+                  <ui:ExcelReadCell.Result>
+                    <OutArgument x:TypeArguments="ui:GenericValue">[CellContent]</OutArgument>
+                  </ui:ExcelReadCell.Result>
+                </ui:ExcelReadCell>
+                <If Condition="[CellContent = Nothing]" DisplayName="If cell is null" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If.Then>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <Assign DisplayName="Assign has content flag" sap2010:WorkflowViewState.IdRef="Assign_5">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">[HasContent]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Shift left rightmost column" sap2010:WorkflowViewState.IdRef="Assign_9">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[RightmostColumn]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[Chr(Asc(Cursor(0))-1).ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Rightmost column found: &quot; + RightmostColumn]" TopMost="True" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <Assign DisplayName="Cell Content String" sap2010:WorkflowViewState.IdRef="Assign_3">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[CellContentString]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[CellContent.ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <If Condition="[CellContentString.Trim = &quot;&quot;]" DisplayName="If empty string" sap2010:WorkflowViewState.IdRef="If_2">
+                        <If.Then>
+                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+                            <Assign DisplayName="Assign has content flag" sap2010:WorkflowViewState.IdRef="Assign_6">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[HasContent]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="Shift left rightmost column" sap2010:WorkflowViewState.IdRef="Assign_10">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[RightmostColumn]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[Chr(Asc(Cursor(0))-1).ToString]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[&quot;Rightmost column found: &quot; + RightmostColumn]" TopMost="True" />
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                  </If.Else>
+                </If>
+                <Assign DisplayName="Shift cursor right one cell" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Cursor]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[Chr(Asc(Cursor(0))+1).ToString + Cursor.Substring(1)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </While>
+            <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_3" Text="// Find last row" />
+            <Assign DisplayName="Reset content flag" sap2010:WorkflowViewState.IdRef="Assign_11">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[HasContent]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign DisplayName="Reset cursor" sap2010:WorkflowViewState.IdRef="Assign_12">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[Cursor]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">A1</InArgument>
+              </Assign.Value>
+            </Assign>
+            <While DisplayName="Loop: Find last row" sap2010:WorkflowViewState.IdRef="While_2" Condition="[HasContent]">
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <ui:ExcelReadCell Cell="[Cursor]" DisplayName="Read Cell" sap2010:WorkflowViewState.IdRef="ExcelReadCell_2" SheetName="[in_WB.GetSheets(0)]">
+                  <ui:ExcelReadCell.Result>
+                    <OutArgument x:TypeArguments="ui:GenericValue">[CellContent]</OutArgument>
+                  </ui:ExcelReadCell.Result>
+                </ui:ExcelReadCell>
+                <If Condition="[CellContent = Nothing]" DisplayName="If cell is null" sap2010:WorkflowViewState.IdRef="If_3">
+                  <If.Then>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
+                      <Assign DisplayName="Has content flag" sap2010:WorkflowViewState.IdRef="Assign_13">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Boolean">[HasContent]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Last row is previous row" sap2010:WorkflowViewState.IdRef="Assign_16">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[LastRowIndex]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[Cint(Cursor.Substring(1)) - 1]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Last row: &quot; + LastRowIndex.ToString]" TopMost="True" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+                      <Assign DisplayName="Cell content string" sap2010:WorkflowViewState.IdRef="Assign_14">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[CellContentString]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[CellContent.ToString]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <If Condition="[CellContentString.Trim = &quot;&quot;]" DisplayName="If empty string" sap2010:WorkflowViewState.IdRef="If_4">
+                        <If.Then>
+                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10">
+                            <Assign DisplayName="Has content flag" sap2010:WorkflowViewState.IdRef="Assign_15">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Boolean">[HasContent]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign DisplayName="Last row is previous row" sap2010:WorkflowViewState.IdRef="Assign_17">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">[LastRowIndex]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">[Cint(Cursor.Substring(1)) - 1]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_4" Text="[&quot;Last row: &quot; + LastRowIndex.ToString]" TopMost="True" />
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </While>
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+    <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_4" Text="// Outputs" />
+    <Assign DisplayName="Upper left cell" sap2010:WorkflowViewState.IdRef="Assign_18">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_UpperLeftCell]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">A1</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Lower right cell" sap2010:WorkflowViewState.IdRef="Assign_19">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_LowerRightCell]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[RightmostColumn + LastRowIndex.ToString]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="[&quot;Lower right cell: &quot; + out_LowerRightCell]" TopMost="True" />
+    <sads:DebugSymbol.Symbol>d2lDOlxXT1JLIE1BSU5cRCZEIENPTlNPTElEQVRFIExJU1RcUFJPQ0VTUyBCVUlMRCAxXFByb2Nlc3MxR2F0aGVyQ3VzdEluZm9cVXRpbGl0eVxGaW5kQm91bmRhcmllc0Jhc2ljLnhhbWxhRgOeAg4CAQFPBU+QAQMBhAFQBVBcAwGDAVEFigIgAgEQiwIFiwJRAgEPjAIFkwIOAgELlAIFmwIOAgEFnAIFnALjAQIBAlGpAVGyAQMBgQFXC4cCFgIBEZECMJECMgIBDo4CMY4CRAIBDJkCMJkCWQIBCJYCMZYCRQIBBpwCmgGcAtEBAgEDWA1fFgIBfWANZxYCAXloDbIBFQIBSbMBDbMBXwIBSLQBDbsBFgIBRLwBDcMBFgIBQMQBDYYCFQIBEl04XToDAYABWjlaQQIBfmU5ZT0CAXxiOmJGAgF6aQ+xARoCAUxocGh+AgFKuQE5uQE9AgFHtgE6tgFGAgFFwQE4wQE6AgFDvgE5vgFBAgFBxQEPhQIaAgEVxAFqxAF4AgETahFuJAIBc28RqAEWAgFRqQERsAEaAgFNxgERygEkAgE6ywERhAIWAgEWaihqMgIBd2xEbFECAXVqhwFqnQECAXRvH284AgFScRWDASACAWeGARWmASACAVOuATyuAXICAVCrAT2rAUUCAU7GASjGATICAT7IAUTIAVECATzGAYcBxgGdAQIBO8sBH8sBOAIBF80BFd8BIAIBLeIBFYICIAIBGHIXeSACAW96F4EBIAIBa4IBF4IB+AECAWiHAReOASACAWOPARelARwCAVTOARfVASACATbWARfdASACATHeARfeAfABAgEu4wEX6gEgAgEp6wEXgQIcAgEZd0N3SAIBcnREdFACAXB/Qn9iAgFufEN8VAIBbIIBrAGCAeYBAgFpjAFCjAFYAgFmiQFDiQFWAgFkjwEljwFOAgFVkQEbowEmAgFX0wFD0wFIAgE50AFE0AFQAgE32wFB2wFgAgE02AFC2AFQAgEy3gGsAd4B3gECAS/oAULoAVgCASzlAUPlAVYCASrrASXrAU4CARrtARv/ASYCARySAR2ZASYCAV+aAR2hASYCAVuiAR2iAf4BAgFY7gEd9QEmAgEl9gEd/QEmAgEg/gEd/gH2AQIBHZcBSZcBTgIBYpQBSpQBVgIBYJ8BSJ8BaAIBXpwBSZwBWgIBXKIBsgGiAewBAgFZ8wFJ8wFOAgEo8AFK8AFWAgEm+wFH+wFmAgEj+AFI+AFWAgEh/gGyAf4B5AECAR4=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Comment_1" sap:VirtualizedContainerService.HintSize="931,74" />
+      <sap2010:ViewStateData Id="Comment_2" sap:VirtualizedContainerService.HintSize="931,55" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="895,60" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="895,60" />
+      <sap2010:ViewStateData Id="ExcelReadCell_1" sap:VirtualizedContainerService.HintSize="847,59" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="MessageBox_1" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="336,383">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="MessageBox_2" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,383">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,530" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="486,754">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="847,901" />
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="847,60" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="869,1224">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="895,1381" />
+      <sap2010:ViewStateData Id="Comment_3" sap:VirtualizedContainerService.HintSize="895,55" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="895,60" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="895,60" />
+      <sap2010:ViewStateData Id="ExcelReadCell_2" sap:VirtualizedContainerService.HintSize="847,59" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="MessageBox_3" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="336,383">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="314,60" />
+      <sap2010:ViewStateData Id="MessageBox_4" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="336,383">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,530" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="486,754">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="847,901" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="869,1124">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="While_2" sap:VirtualizedContainerService.HintSize="895,1281" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="917,3321">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_1" sap:VirtualizedContainerService.HintSize="931,3430" />
+      <sap2010:ViewStateData Id="Comment_4" sap:VirtualizedContainerService.HintSize="931,55" />
+      <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="931,60" />
+      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="931,60" />
+      <sap2010:ViewStateData Id="MessageBox_5" sap:VirtualizedContainerService.HintSize="931,59" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="953,4157">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FindBoundariesBasic_1" sap:VirtualizedContainerService.HintSize="993,4237" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
